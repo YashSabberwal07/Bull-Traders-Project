@@ -47,17 +47,16 @@ Home
     </button>
   </div>
   <div class="container">
-    <h3> Top Gainers : </h3>
-    <div class="list-group">
-      {% for stock in Top_gainer %}
+     {% comment %} <h3> Top Gainers : </h3>
+     <div class="list-group"> 
+       {% for stock in top_gainer %}
       <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
-        <li>{{ stock }}</li>
+        <li>{{ stock.symbol }}</li>
       </a>
-      {% endfor %}
-    </div>
+       {% endfor %}
+    </div> {% endcomment %}
     <h3> Indexes : </h3>
     <div class="list-group">
-
       {% for stock in index_codes %}
       <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
         <li>{{ stock }}</li>

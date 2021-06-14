@@ -10,13 +10,14 @@ from django.http import JsonResponse
 from nsetools import Nse
 # Create your views here.
 def home(request):
+    print("check")
     nse = Nse()
     index_codes = nse.get_index_list()
-    Top_gainer = nse.get_top_gainers()
+    #top_gainer = nse.get_top_gainers()
     #print(index_codes)
     return render(request,'index.html',
          {'index_codes':index_codes},
-         {'Top_gainer' : Top_gainer}
+         #{'top_gainer':top_gainer}
     )
 
 def about(request):
