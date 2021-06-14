@@ -44,13 +44,22 @@
   </button>
 </div>
 <div class="container">
-<div class="list-group">
+<h3> Top Gainers : </h3>
+  <div class="list-group">
+   {% for stock in Top_gainer %}
+    <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
+      <li>{{ stock }}</li>
+    </a>   
+   {% endfor %}
+  </div>
+<h3> Indexes : </h3> 
+  <div class="list-group">
 
-  {% for stock in index_codes %}
-  <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
-    <li>{{ stock }}</li>
-  </a>
-  {% endfor %}
-</div>
+    {% for stock in index_codes %}
+    <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
+      <li>{{ stock }}</li>
+    </a>
+    {% endfor %}
+  </div>
 </div>
  {% endblock %}

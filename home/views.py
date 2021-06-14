@@ -12,9 +12,11 @@ from nsetools import Nse
 def home(request):
     nse = Nse()
     index_codes = nse.get_index_list()
+    Top_gainer = nse.get_top_gainers()
     #print(index_codes)
     return render(request,'index.html',
-         {'index_codes':index_codes}
+         {'index_codes':index_codes},
+         {'Top_gainer' : Top_gainer}
     )
 
 def about(request):
