@@ -1,0 +1,13 @@
+ {% extends 'base.html' %}
+ {%block title%}
+ Index Info
+ {%endblock title%}
+ {% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
+<div class = "container" > 
+<h3> Indexes : </h3>
+    <div class="list-group" id = "index_quote" name = "index_quote">
+     <ul> {{ index_quote }} </ul>
+    </div>
+</div>
+{% endblock body %}

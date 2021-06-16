@@ -47,19 +47,24 @@ Home
     </button>
   </div>
   <div class="container">
-     {% comment %} <h3> Top Gainers : </h3>
-     <div class="list-group"> 
-       {% for stock in top_gainer %}
-      <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
-        <li>{{ stock.symbol }}</li>
-      </a>
-       {% endfor %}
-    </div> {% endcomment %}
-    <h3> Indexes : </h3>
+    <h3> Top Gainers : </h3>
     <div class="list-group">
+      {% for stk in top_gainer %}
+      <a href="/" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} ">
+      <ul> {{ stk.symbol }} </ul>
+        {% comment %} {% for key, value in stk %}
+        <ul>{{key}}</ul>
+        <ul>{{value}}</ul>
+        {% endfor %} {% endcomment %}
+      </a>
+      {% endfor %}
+    </div>
+    <h3> Indexes : </h3>
+    <div class="list-group" action ="/index_Info">
       {% for stock in index_codes %}
-      <a href="/services" class="list-group-item list-group-item-action list-group-item-primary">
+      <a href="/indexInfo" class="list-group-item list-group-item-action list-group-item-primary" id = "{{ stock }}" name = " {{ stock }} ">
         <li>{{ stock }}</li>
+        {% comment %} <li>{{index_quote}}</li> {% endcomment %}
       </a>
       {% endfor %}
     </div>

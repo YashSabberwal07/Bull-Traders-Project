@@ -10,25 +10,44 @@ from django.http import JsonResponse
 from nsetools import Nse
 # Create your views here.
 def home(request):
-    print("check")
+    #print("check")
     nse = Nse()
     index_codes = nse.get_index_list()
-    #top_gainer = nse.get_top_gainers()
+    top_gainer = nse.get_top_gainers()
+    #index_quote = nse.get_index_quote(top_gainer)
     #print(index_codes)
+    #print(top_gainer)
+    #request.session = name
     return render(request,'index.html',
-         {'index_codes':index_codes},
-         #{'top_gainer':top_gainer}
-    )
+         {'index_codes':index_codes,
+         'top_gainer':top_gainer,
+         #'index_quote':index_quote
+         })
 
 def about(request):
     return render(request, 'home/about.html')
     
-def services(request):
-    return render(request, 'services.html')
+def indexInfo(request):
+     print("checkpoint1")
+     print(request)
+     print("checkpoint2")
+     nse = Nse()
+     if request.method == "GET" :
+     #name = request.POST.get('name')
+     #print(name)
+         index_quote = nse.get_index_quote(request.GET['name'])
+         print(index_quote)
+    #indexInfo = indexInfo.save()
+     return render(request, 'indexInfo.html',
+     {'index_quote' : index_quote}
+     )
     #return HttpResponse("this is services page")
 def contact(request):
+     print("checkpoint1")
+     print(request)
+     print("checkpoint2")
     #messages.error(request, 'Welcome to Contact')
-    if request.method == "POST" :
+     if request.method == "POST" :
         name = request.POST['name']
         email= request.POST['email']
         phone = request.POST['phone']
@@ -41,7 +60,7 @@ def contact(request):
             contact.save()
             messages.success(request,"Your message has been sent succesfully")
 
-    return render(request, 'home/contact.html')
+     return render(request, 'home/contact.html')
 def handleSignup(request):
     if request.method == 'POST' :
         username = request.POST['username']
