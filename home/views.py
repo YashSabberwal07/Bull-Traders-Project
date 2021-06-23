@@ -7,7 +7,7 @@ from blog.models import Post
 import requests
 import json
 from django.http import JsonResponse
-from nsetools import Nse
+from nsetools import Nse, nse
 # Create your views here.
 def home(request):
     #print("check")
@@ -26,21 +26,32 @@ def home(request):
 
 def about(request):
     return render(request, 'home/about.html')
+def topLosers(request):
+    nse=Nse()
+    top_losers = nse.get_top_losers()
+    return render(request, 'topLosers.html',
+    { 'top_losers' : top_losers })
+def topGainer(request):
+    nse = Nse()
+    top_gainer = nse.get_top_gainers()
+
+    return render(request, 'topGainer.html'
+    ,{'top_gainer':top_gainer})
     
-def indexInfo(request):
-     print("checkpoint1")
-     print(request)
-     print("checkpoint2")
+    
+def indexInfo(request, stock_id = "1"):
+     #print("checkpoint1")
+     #print(request)
+     #print("checkpoint2")
      nse = Nse()
      if request.method == "GET" :
      #name = request.POST.get('name')
      #print(name)
-         index_quote = nse.get_index_quote(request.GET['name'])
-         print(index_quote)
+         index_quote = nse.get_index_quote(request.GET.get('stock_id'))
+         print(index_quote,"index quote")
     #indexInfo = indexInfo.save()
      return render(request, 'indexInfo.html',
-     {'index_quote' : index_quote}
-     )
+     {'index_quote' : index_quote})
     #return HttpResponse("this is services page")
 def contact(request):
      print("checkpoint1")
@@ -114,14 +125,20 @@ def handleLogout(request):
     return redirect("home")
     return HttpResponse(request, 'handelLogout')
 def search(request):
+    nse=Nse()
     query = request.GET['query']
     if len(query)>78:
         allPosts = Post.objects.none()
     else :
-        allPostsTitle = Post.objects.filter(title__icontains=query)
-        allPostsContent = Post.objects.filter(content__icontains=query)
-        allPosts = allPostsTitle.union(allPostsContent)
-    if allPosts.count() == 0:
-        messages.warning(request,"No search result found Please refine your query")
-    params = {'allPosts': allPosts,'query':query}
-    return render(request, 'home/search.html',params)
+        # allPostsTitle = Post.objects.filter(title__icontains=query)
+        # allPostsContent = Post.objects.filter(content__icontains=query)
+        # allPosts = allPostsTitle.union(allPostsContent)
+        SI = nse.get_quote(query)
+        #allStk = allPosts.union(SI)
+    # if SI.count() == 0:
+    #     messages.warning(request,"No search result found Please refine your query")
+    #params = {'allStk': allStk,'query':query}
+    print(SI)
+    return render(request, 'home/search.html',
+    {'SI':SI,'query':query}
+    )
