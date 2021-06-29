@@ -22,6 +22,24 @@ def home(request):
 
 def about(request):
     return render(request, 'home/about.html')
+def preopenNifty(request):
+    nse=Nse()
+    preopenNifty = nse.get_preopen_nifty()
+    return render(request, 'preopenNifty.html',
+    {"preopenNifty":preopenNifty}
+    )
+def preopenNiftybank(request):
+    nse=Nse()
+    preopenNiftybank=nse.get_preopen_niftybank()
+    return render(request, 'preopenNiftybank.html',
+    {"preopenNiftybank":preopenNiftybank}
+    )
+def preopenFno(request):
+    nse=Nse()
+    preopenFno=nse.get_preopen_fno()
+    return render(request, 'preopenfno.html',
+    {"preopenFno":preopenFno}
+    )
 def topFnoGainer(request):
     nse=Nse()
     topFnoGainer = nse.get_top_fno_gainers()

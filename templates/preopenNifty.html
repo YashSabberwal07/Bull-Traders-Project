@@ -4,46 +4,46 @@
  {%endblock title%}
  {% block sevicesactive %} active {% endblock sevicesactive %}
 {% block body %}
-<h3> Top futures and Options Gainers : </h3>
+<h3> Preopen Nifty : </h3>
     <div class="list-group">
     <table style="width:100%">
   <tr>
     <th>Stock Names </th>
-    <th>Open Price</th>
-    <th>High Price</th>
-    <th> Traded Quantity </th>
-    <th>Last Announcement</th>
+    <th>Traded Quantity</th>
+    <th>Year High</th>
+    <th>Year Low</th>
+    <th>Finall Quantity</th>
   </tr>
   {% comment %} {% for i in top_gainer %} {% endcomment %}
   <tr>
     <td>
-      {% for stk in topFnoGainer %}
+      {% for stk in preopenNifty %}
        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} "> 
       <ul> {{ stk.symbol }}</ul></a> 
       {% endfor %}
     </td>
     <td>
-      {% for stk in topFnoGainer %}
+      {% for stk in preopenNifty  %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.openPrice }} </ul> </a>
+      <ul> {{ stk.trdQnty }} </ul> </a>
       {% endfor %}
     </td>
     <td>
-      {% for stk in topFnoGainer %}
+      {% for stk in preopenNifty %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.highPrice }} </ul> </a>
+      <ul> {{ stk.yHigh }} </ul> </a>
       {% endfor %}
     </td>
     <td>
-      {% for stk in topFnoGainer %}
+      {% for stk in preopenNifty %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.tradedQuantity }} </ul> </a>
+      <ul> {{ stk.yLow }} </ul> </a>
       {% endfor %}
     </td>
     <td>
-      {% for stk in topFnoGainer %}
+      {% for stk in preopenNifty %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.lastCorpAnnouncement }} </ul> </a>
+      <ul> {{ stk.finQnty}} </ul> </a>
       {% endfor %}
     </td>
       
