@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+ {%block title%}
+ Index Info
+ {%endblock title%}
+ {% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
 <h3> Top Gainers : </h3>
     <div class="list-group">
     <table style="width:100%">
@@ -37,4 +43,5 @@
         <ul>{{key}}</ul>
         <ul>{{value}}</ul>
         {% endfor %} {% endcomment %}
+{% endblock body %}
       

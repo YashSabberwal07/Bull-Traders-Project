@@ -15,19 +15,19 @@
   {% comment %} {% for i in top_gainer %} {% endcomment %}
   <tr>
     <td>
-      {% for stk in top_losers %}
+      {% for stk in topFnoLosers %}
        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} "> 
       <ul> {{ stk.symbol }}</ul></a> 
       
       {% endfor %}
     </td>
     <td>
-      {% for stk in top_losers %}
+      {% for stk in topFnoLosers %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
       <ul> {{ stk.openPrice }} </ul> </a>
       {% endfor %}</td>
     <td>
-      {% for stk in top_losers %}
+      {% for stk in topFnoLosers %}
       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
       <ul> {{ stk.highPrice }} </ul> </a>
       {% endfor %}

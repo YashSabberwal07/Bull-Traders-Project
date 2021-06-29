@@ -13,19 +13,37 @@ def home(request):
     #print("check")
     nse = Nse()
     index_codes = nse.get_index_list()
-    top_gainer = nse.get_top_gainers()
+    #top_gainer = nse.get_top_gainers()
     #index_quote = nse.get_index_quote(top_gainer)
     #print(index_codes)
     #print(top_gainer)
     #request.session = name
-    return render(request,'index.html',
-         {'index_codes':index_codes,
-         'top_gainer':top_gainer,
-         #'index_quote':index_quote
-         })
+    return render(request,'index.html')
 
 def about(request):
     return render(request, 'home/about.html')
+def topFnoGainer(request):
+    nse=Nse()
+    topFnoGainer = nse.get_top_fno_gainers()
+    return render(request, 'topFnoGainer.html',
+    { "topFnoGainer": topFnoGainer}
+    )
+def topFnoLosers(request):
+    nse=Nse()
+    topFnoLosers = nse.get_top_fno_losers()
+    return render(request, 'topFnoLosers.html',
+    {"topFnoLosers":topFnoLosers})
+def fnoLotsize(request):
+    nse=Nse()
+    fnoLotsize = nse.get_fno_lot_sizes()
+    return render(request, 'lotSize.html',
+    {"fnoLotsize":fnoLotsize})
+def indexList(request):
+    nse = Nse()
+    index_codes = nse.get_index_list()
+    return render(request, 'indexList.html',
+    {'index_codes':index_codes}
+    )
 def topLosers(request):
     nse=Nse()
     top_losers = nse.get_top_losers()
