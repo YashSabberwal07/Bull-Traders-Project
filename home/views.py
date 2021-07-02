@@ -14,7 +14,7 @@ from nsetools import Nse, nse
 def home(request):
     #print("check")
     nse = Nse()
-    index_codes = nse.get_index_list()
+    # index_codes = nse.get_index_list()
     #top_gainer = nse.get_top_gainers()
     #index_quote = nse.get_index_quote(top_gainer)
     #print(index_codes)
@@ -115,31 +115,31 @@ def topGainer(request):
         ,{'top_gainer':top_gainer})
     
     
-def indexInfo(request, stock_id = "1"):
-     #print("checkpoint1")
-     #print(request)
-     #print("checkpoint2")
+def indexInfo(request):
+     print("checkpoint2")
      nse = Nse()
+    #  print(request.query_params)
      if request.method == "GET" :
-     #name = request.POST.get('name')
-     #print(name)
          index_quote = nse.get_index_quote(request.GET.get('stock_id'))
          print(index_quote,"index quote")
-    #indexInfo = indexInfo.save()
      return render(request, 'indexInfo.html',
      {'index_quote' : index_quote})
-    #return HttpResponse("this is services page")
+
+def quote_info(request):
+    nse = Nse()
+
+    if request.method == "GET" :
+         quote_info = nse.get_quote(request.GET.get('stock_id'))
+         print(quote_info,"quote_info")
+    return render(request, 'quoteInfo.html',
+     {'quote_info' : quote_info})
+
 def contact(request):
-     print("checkpoint1")
-     print(request)
-     print("checkpoint2")
-    #messages.error(request, 'Welcome to Contact')
      if request.method == "POST" :
         name = request.POST['name']
         email= request.POST['email']
         phone = request.POST['phone']
         content = request.POST['content']
-        #print(name,email,phone,content)
         if len(name)<2 or len(email)<3 or len(phone)<10 or len(content)<4 :
             messages.error(request,"Please fill the form correctly")
         else:
@@ -148,6 +148,7 @@ def contact(request):
             messages.success(request,"Your message has been sent succesfully")
 
      return render(request, 'home/contact.html')
+     
 def handleSignup(request):
     if request.method == 'POST' :
         username = request.POST['username']

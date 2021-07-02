@@ -16,6 +16,7 @@ urlpatterns = [
     path("topFnoLosers",views.topFnoLosers, name='top_Fno_losers'),
     path("indexList",views.indexList, name='index_list'),
     path("indexInfo/",views.indexInfo, name='indexInfo'),
+    path("quote_info/", views.quote_info, name='quote_info'),
     path("contact",views.contact, name='contact'),
     path("search",views.search, name='Search'),
     path("signup",views.handleSignup, name='handleSignup'),
