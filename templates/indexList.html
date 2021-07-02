@@ -4,18 +4,14 @@ Index Info
 {%endblock title%}
 {% block sevicesactive %} active {% endblock sevicesactive %}
 {% block body %}
-<div class="container"></div>
-<h3> Indexes : </h3>
-<div class="list-group " action="/index_Info">
+<div class="container">
+  <h3> Indexes </h3>
+	<div class="list-group ">
     {% for stock in index_codes %}
-    <a href="/indexInfo/?stock_id={{ stock }}"
-        class="list-group-item list-group-item-action list-group-item-primary my-2" id="{{ stock }}"
-        name=" {{ stock }} ">
-        <li>{{ stock }}</li>
-        {% comment %} <li>{{index_quote}}</li> {% endcomment %}
+    <a href="/indexInfo/?stock_id={{ stock }}" id= "{{ stock }}" name= "{{ stock }}">
+      {{ stock }}
     </a>
     {% endfor %}
-</div>
-</div>
+	</div>
 </div>
 {% endblock body %}
