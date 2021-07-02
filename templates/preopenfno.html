@@ -1,68 +1,80 @@
 {% extends 'base.html' %}
- {%block title%}
- Index Info
- {%endblock title%}
- {% block sevicesactive %} active {% endblock sevicesactive %}
+{%block title%}
+Index Info
+{%endblock title%}
+{% block sevicesactive %} active {% endblock sevicesactive %}
 {% block body %}
 <h3> Preopen Futures and Options : </h3>
-    <div class="list-group">
-    <table style="width:100%">
-  <tr>
-    <th>Stock Names </th>
-    <th>Open Price</th>
-    <th>High Price</th>
-    <th>Year High</th>
-    <th>Year Low</th>
-    <th>Finall Quantity</th>
-  </tr>
-  {% comment %} {% for i in top_gainer %} {% endcomment %}
-  <tr>
-    <td>
-      {% for stk in preopenFno %}
-       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} "> 
-      <ul> {{ stk.symbol }}</ul></a> 
-      {% endfor %}
-    </td>
-    <td>
-      {% for stk in preopenFno  %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.trdQnty }} </ul> </a>
-      {% endfor %}
-    </td>
-    <td>
-      {% for stk in preopenFno %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.yHigh }} </ul> </a>
-      {% endfor %}
-    </td>
+<div class="list-group">
+  <table style="width:100%">
+    <tr>
+      <th>Stock Names </th>
+      <th>Open Price</th>
+      <th>High Price</th>
+      <th>Year High</th>
+      <th>Year Low</th>
+      <th>Finall Quantity</th>
+    </tr>
+    {% comment %} {% for i in top_gainer %} {% endcomment %}
+    <tr>
       <td>
-      {% for stk in preopenFno %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.yHigh }} </ul> </a>
-      {% endfor %}
-    </td>
-    <td>
-      {% for stk in preopenFno %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.yLow }} </ul> </a>
-      {% endfor %}
-    </td>
-    <td>
-      {% for stk in preopenFno %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.finQnty}} </ul> </a>
-      {% endfor %}
-    </td>
-      
-  </tr>
-  {% comment %} {% endfor %} {% endcomment %}
-</table>
-      {% comment %} {% for stk in top_gainer %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} ">
-      <ul> {{ stk.symbol }} </ul>
-        {% comment %} {% for key, value in stk %}
-        <ul>{{key}}</ul>
-        <ul>{{value}}</ul>
-        {% endfor %} {% endcomment %}
-{% endblock body %}
-      
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.symbol }} ">
+          <ul> {{ stk.symbol }}</ul>
+        </a>
+        {% endfor %}
+      </td>
+      <td>
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.openPrice }} ">
+          <ul> {{ stk.trdQnty }} </ul>
+        </a>
+        {% endfor %}
+      </td>
+      <td>
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.openPrice }} ">
+          <ul> {{ stk.yHigh }} </ul>
+        </a>
+        {% endfor %}
+      </td>
+      <td>
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.openPrice }} ">
+          <ul> {{ stk.yHigh }} </ul>
+        </a>
+        {% endfor %}
+      </td>
+      <td>
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.openPrice }} ">
+          <ul> {{ stk.yLow }} </ul>
+        </a>
+        {% endfor %}
+      </td>
+      <td>
+        {% for stk in preopenFno %}
+        <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+          id=" {{ stk.symbol }} " name=" {{ stk.openPrice }} ">
+          <ul> {{ stk.finQnty}} </ul>
+        </a>
+        {% endfor %}
+      </td>
+
+    </tr>
+    {% comment %} {% endfor %} {% endcomment %}
+  </table>
+  {% comment %} {% for stk in top_gainer %}
+  <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
+    id=" {{ stk.symbol }} " name=" {{ stk.symbol }} ">
+    <ul> {{ stk.symbol }} </ul>
+    {% comment %} {% for key, value in stk %}
+    <ul>{{key}}</ul>
+    <ul>{{value}}</ul>
+    {% endfor %} {% endcomment %}
+    {% endblock body %}

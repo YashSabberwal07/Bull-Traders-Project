@@ -4,7 +4,7 @@ Home
 {%endblock title%}
 {% block body %}
 
-<div class="container-fluid my-4 ">
+<div class="container-fluid my-2">
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -46,6 +46,7 @@ Home
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+  {% comment %} {% if user.is_authenticate %} {% endcomment %}
   <div class="row">
     <div class="col-sm-4">
       <div class="card my-3 mx-4" style="width: 18rem;">
@@ -163,19 +164,31 @@ Home
       </div>
     </div>
   </div>
-  {% comment %} <div class="container">
-    <h3> Top Gainers : </h3>
-    <div class="list-group">
-      {% for stk in top_gainer %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary"
-        id=" {{ stk.symbol }} " name=" {{ stk.symbol }} ">
-        <ul> {{ stk.symbol }} </ul>
-        {% for key, value in stk %}
-        <ul>{{key}}</ul>
-        <ul>{{value}}</ul>
-        {% endfor %}
-      </a>
-      {% endfor %}
-    </div> {% endcomment %}
-   
+ {% comment %} {% else %}
+ <div class="modal fade" id="loginModal" name="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModaltitle">Login Here </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <form action = '/login' method = 'post'>
+              <label for="Username" class="form-label">Username :</label>
+              <input type="text" class="form-control" id="loginusername" name= "loginusername" placeholder="Username" required>
+              <label for="pass1" class="form-label">Enter Your Password :</label>
+              <input type="password" class="form-control" id="loginpassword" name = "loginpassword" placeholder="Enter your Password" required required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        {% csrf_token %}
+        </form>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>  
+  {% endif %}
+    {% endcomment %}
   {% endblock %}
