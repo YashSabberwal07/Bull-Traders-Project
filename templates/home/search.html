@@ -7,7 +7,7 @@
 
 <div class = "container my-3">
   <h2> Seacrh Results : </h2>
-{% if  SI|length < 1 %}
+{% if  search_index_info|length < 1 %}
     <p>No Search Results</p>
     Your Search query: <b>'{{query}}'</b> did not match any document.<br>
     Suggestions: 
@@ -19,7 +19,7 @@
     </ul>
 {% endif %}
 {% comment %} {% for post in allPosts %}
-  <div class="row mb-2">
+  <!-- <div class="row mb-2">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
@@ -33,37 +33,24 @@
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
          </div>
       </div>
-    </div>
+    </div> -->
     {% endfor %} {% endcomment %}
    
     <h3> {{query}} </h3>
     <div class="list-group">
     <table style="width:100%">
   <tr>
-    <th>Stock Names </th>
-    <th>Open Price</th>
-    <th>High Price</th>
   </tr>
   {% comment %} {% for i in top_gainer %} {% endcomment %}
   <tr>
     <td>
-      {% for si in SI %}
-       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ si }} "> 
-      <ul> {{ si }}</ul></a> 
+      {% for key, value in search_index_info.items %}
+        <li class="list-group-item"> {{key}} :  {{value}} 
+        </li>
+      </a> 
       
       {% endfor %}
     </td>
-    <td>
-      {% for si in SI %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk}} ">
-      <ul> {{ si.pricebandupper }} </ul> </a>
-      {% endfor %}</td>
-    {% comment %} <td>
-      {% for stk in top_losers %}
-      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
-      <ul> {{ stk.highPrice }} </ul> </a>
-      {% endfor %}
-      </td> {% endcomment %}
       
   </tr>
   {% comment %} {% endfor %} {% endcomment %}
