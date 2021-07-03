@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+ {%block title%}
+ Index Info
+ {%endblock title%}
+ {% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
+<h3>  Top futures and Options Losers : </h3>
+    <div class="list-group">
+    <table style="width:100%">
+  <tr>
+    <th>Stock Names </th>
+    <th>Open Price</th>
+    <th>High Price</th>
+    <th> Traded Quantity </th>
+    <th>Last Announcement</th>
+  </tr>
+  {% comment %} {% for i in top_gainer %} {% endcomment %}
+  <tr>
+    <td>
+      {% for stk in topFnoLosers %}
+       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.symbol }} "> 
+      <ul> {{ stk.symbol }}</ul></a> 
+      
+      {% endfor %}
+    </td>
+    <td>
+      {% for stk in topFnoLosers %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
+      <ul> {{ stk.openPrice }} </ul> </a>
+      {% endfor %}</td>
+    <td>
+      {% for stk in topFnoLosers %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
+      <ul> {{ stk.highPrice }} </ul> </a>
+      {% endfor %}
+      </td>
+    <td>
+      {% for stk in topFnoLosers %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
+      <ul> {{ stk.tradedQuantity }} </ul> </a>
+      {% endfor %}
+      </td>
+    <td>
+      {% for stk in topFnoLosers %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
+      <ul> {{ stk.lastCorpAnnouncement }} </ul> </a>
+      {% endfor %}
+      </td>
+      
+  </tr>
+  {% comment %} {% endfor %} {% endcomment %}
+</table>
+{% endblock body %}

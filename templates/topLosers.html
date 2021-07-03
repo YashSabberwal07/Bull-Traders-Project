@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+ {%block title%}
+ Index Info
+ {%endblock title%}
+ {% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
+<div class="container">
+  <h3 class="my-4"> Top Losers </h3>
+      <table style="width:100%" class="table table-striped table-bordered">
+      <thead class="thead-dark"></thead>
+    <tr class="my-2">
+      <th>Stock Names </th>
+      <th>Open Price</th>
+      <th>High Price</th>
+      <th> Traded Quantity </th>
+      <th>Last Announcement</th>
+    </tr>
+    {% comment %} {% for i in top_losers %} {% endcomment %}
+    {% for stk in top_losers %}
+    <tr>
+      <td class="my-4">
+        <a href="/quote_info/?stock_id={{ stk.symbol }}" id = "{{ stk.symbol }}" name ="{{ stk.symbol }}"> 
+          <ul> {{ stk.symbol }}</ul>
+        </a>
+      </td>
+      <td>
+        <ul> {{ stk.openPrice }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.highPrice }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.tradedQuantity }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.lastCorpAnnouncement }} </ul>
+      </td>  
+    </tr>
+    {% endfor %}
+    {% comment %}{% endcomment %}
+  </table>
+    {% endblock body %}
+</div>

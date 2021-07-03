@@ -7,7 +7,7 @@
 
 <div class = "container my-3">
   <h2> Seacrh Results : </h2>
-{% if  allPosts|length < 1 %}
+{% if  SI|length < 1 %}
     <p>No Search Results</p>
     Your Search query: <b>'{{query}}'</b> did not match any document.<br>
     Suggestions: 
@@ -18,7 +18,7 @@
     <li>For more helpful tips on searching, visit the Yahoo Search Help Centre.</li>
     </ul>
 {% endif %}
-{% for post in allPosts %}
+{% comment %} {% for post in allPosts %}
   <div class="row mb-2">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -34,6 +34,40 @@
          </div>
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
+   
+    <h3> {{query}} </h3>
+    <div class="list-group">
+    <table style="width:100%">
+  <tr>
+    <th>Stock Names </th>
+    <th>Open Price</th>
+    <th>High Price</th>
+  </tr>
+  {% comment %} {% for i in top_gainer %} {% endcomment %}
+  <tr>
+    <td>
+      {% for si in SI %}
+       <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ si }} "> 
+      <ul> {{ si }}</ul></a> 
+      
+      {% endfor %}
+    </td>
+    <td>
+      {% for si in SI %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk}} ">
+      <ul> {{ si.pricebandupper }} </ul> </a>
+      {% endfor %}</td>
+    {% comment %} <td>
+      {% for stk in top_losers %}
+      <a href="/indexInfo/?stock_id1={{ stk }}" class="list-group-item list-group-item-action list-group-item-primary" id = " {{ stk.symbol }} " name =" {{ stk.openPrice }} ">
+      <ul> {{ stk.highPrice }} </ul> </a>
+      {% endfor %}
+      </td> {% endcomment %}
+      
+  </tr>
+  {% comment %} {% endfor %} {% endcomment %}
+</table>
+
 </div> 
 {% endblock body %}
