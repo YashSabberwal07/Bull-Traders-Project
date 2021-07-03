@@ -1,7 +1,6 @@
-{% for lot in fnoLotsize  %}
+{% for key, value in fnoLotsize.items %}
 
-<ul>{{lot}}</ul>
-<ul>{{lot.value}}</ul>
+<ul>{{key}} :  {{value}}</ul>
 
 {% endfor %} 
 {% comment %} {{fnoLotsize}} {% endcomment %}

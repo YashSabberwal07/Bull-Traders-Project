@@ -83,9 +83,9 @@ def fnoLotsize(request):
     else:
         nse=Nse()
         fnoLotsize = nse.get_fno_lot_sizes()
-        print(fnoLotsize)
         return render(request, 'lotSize.html',
         {"fnoLotsize":fnoLotsize})
+
 def indexList(request):
     if  request.user.is_anonymous:
         return redirect("/login")
@@ -215,12 +215,13 @@ def search(request):
         # allPostsTitle = Post.objects.filter(title__icontains=query)
         # allPostsContent = Post.objects.filter(content__icontains=query)
         # allPosts = allPostsTitle.union(allPostsContent)
-        SI = nse.get_quote(query)
+        search_index_info = nse.get_quote(query)
         #allStk = allPosts.union(SI)
     # if SI.count() == 0:
     #     messages.warning(request,"No search result found Please refine your query")
     #params = {'allStk': allStk,'query':query}
-    print(SI)
+    print("In else block")
+    print(search_index_info)
     return render(request, 'home/search.html',
-    {'SI':SI,'query':query}
+    {'search_index_info':search_index_info,'query':query}
     )
