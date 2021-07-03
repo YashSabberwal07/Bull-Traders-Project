@@ -98,9 +98,6 @@ body {
     <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-  {% if flag %}
-  <h>please login to continue</h>
-  {% endif %}
  
 <main class="form-signin">
     <form action = '/login' method = 'post'>
@@ -108,9 +105,12 @@ body {
     {% comment %} <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> {% endcomment %}
   {% comment %} class="h3 mb-3 fw-normall" {% endcomment %}
     <form action = '/login' method = 'post'>
-    <h1 class=" text-primary">Please Login </h1>
+    <h1 class=" text-primary">Login </h1>
 
     {% comment %} <div class="form-floating"> {% endcomment %}
+      {% if 'next' in request.GET %}
+        <p class="text-danger">Please login to continue</p>
+      {% endif %}
       <input type="text" class="form-control" id="loginusername" name= "loginusername" placeholder="Username" required>
       <label for="floatingInput">Username</label>
     {% comment %} </div> {% endcomment %}

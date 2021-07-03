@@ -6,10 +6,9 @@ from django.contrib import messages
 from blog.models import Post
 import requests
 import json
-from django.http import HttpResponseRedirect
 from django.http import JsonResponse
-from django.contrib.auth.decorators import permission_required
 from nsetools import Nse, nse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     #print("check")
@@ -105,14 +104,11 @@ def topLosers(request):
         return render(request, 'topLosers.html',
         { 'top_losers' : top_losers })
 # @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topGainer(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
-        nse = Nse()
-        top_gainer = nse.get_top_gainers()
-        return render(request, 'topGainer.html'
-        ,{'top_gainer':top_gainer})
+    nse = Nse()
+    top_gainer = nse.get_top_gainers()
+    return render(request, 'topGainer.html',{'top_gainer':top_gainer})
     
     
 def indexInfo(request):
