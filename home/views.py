@@ -19,91 +19,65 @@ def home(request):
     #print(index_codes)
     #print(top_gainer)
     #request.session = name
-    return render(request,'index.html')
+    return render(request,'home/index.html')
 
 def about(request):
     print(request)
     print(redirect)
     return render(request, 'home/about.html')
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenNifty(request):
-    if  request.user.is_anonymous:
-        return redirect("/login",status=302)
-    else:
         nse=Nse()
         preopenNifty = nse.get_preopen_nifty()
         return render(request, 'preopenNifty.html',
          {"preopenNifty":preopenNifty}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenNiftybank(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         preopenNiftybank=nse.get_preopen_niftybank()
         return render(request, 'preopenNiftybank.html',
         {"preopenNiftybank":preopenNiftybank}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenFno(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         preopenFno=nse.get_preopen_fno()
         return render(request, 'preopenfno.html',
         {"preopenFno":preopenFno}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topFnoGainer(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         topFnoGainer = nse.get_top_fno_gainers()
         return render(request, 'topFnoGainer.html',
         { "topFnoGainer": topFnoGainer}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topFnoLosers(request):
-    if  request.user.is_anonymous:
-        flag =1
-        return redirect("/login",{"flag":flag})
-    else:
         nse=Nse()
         topFnoLosers = nse.get_top_fno_losers()
         return render(request, 'topFnoLosers.html',
         {"topFnoLosers":topFnoLosers})
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def fnoLotsize(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         fnoLotsize = nse.get_fno_lot_sizes()
         return render(request, 'lotSize.html',
         {"fnoLotsize":fnoLotsize})
-
+@login_required(login_url='/login')
 def indexList(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse = Nse()
         index_codes = nse.get_index_list()
         return render(request, 'indexList.html',
         {'index_codes':index_codes}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topLosers(request): 
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         top_losers = nse.get_top_losers()
         return render(request, 'topLosers.html',
         { 'top_losers' : top_losers })
-# @permission_required('entity.can_delete',login_url='/login')
 @login_required(login_url='/login')
 def topGainer(request):
     nse = Nse()
@@ -126,7 +100,7 @@ def quote_info(request):
 
     if request.method == "GET" :
          quote_info = nse.get_quote(request.GET.get('stock_id'))
-         print(quote_info,"quote_info")
+        #  print(quote_info,"quote_info")
     return render(request, 'quoteInfo.html',
      {'quote_info' : quote_info})
 
