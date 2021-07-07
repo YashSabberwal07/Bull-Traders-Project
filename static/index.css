@@ -1,0 +1,13 @@
+.card{
+    flex:1 1 1 20rem;
+    display: flex;
+    height: calc(100vh/1.2);
+    box-shadow: 0 0 15px;
+}
+.card .btn{
+    position:absolute;
+    bottom:0;
+    padding: 10px 20px;
+    margin:10px 20px;
+}
+.card:hover{box-shadow: 5px 5px 10px -4px #000;}
