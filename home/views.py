@@ -29,60 +29,60 @@ def about(request):
 def preopenNifty(request):
         nse=Nse()
         preopenNifty = nse.get_preopen_nifty()
-        return render(request, 'preopenNifty.html',
+        return render(request, 'Premarket/preopenNifty.html',
          {"preopenNifty":preopenNifty}
         )
 @login_required(login_url='/login')
 def preopenNiftybank(request):
         nse=Nse()
         preopenNiftybank=nse.get_preopen_niftybank()
-        return render(request, 'preopenNiftybank.html',
+        return render(request, 'Premarket/preopenNiftybank.html',
         {"preopenNiftybank":preopenNiftybank}
         )
 @login_required(login_url='/login')
 def preopenFno(request):
         nse=Nse()
         preopenFno=nse.get_preopen_fno()
-        return render(request, 'preopenfno.html',
+        return render(request, 'Premarket/preopenfno.html',
         {"preopenFno":preopenFno}
         )
 @login_required(login_url='/login')
 def topFnoGainer(request):
         nse=Nse()
         topFnoGainer = nse.get_top_fno_gainers()
-        return render(request, 'topFnoGainer.html',
+        return render(request, 'F&O/topFnoGainer.html',
         { "topFnoGainer": topFnoGainer}
         )
 @login_required(login_url='/login')
 def topFnoLosers(request):
         nse=Nse()
         topFnoLosers = nse.get_top_fno_losers()
-        return render(request, 'topFnoLosers.html',
+        return render(request, 'F&O/topFnoLosers.html',
         {"topFnoLosers":topFnoLosers})
 @login_required(login_url='/login')
 def fnoLotsize(request):
         nse=Nse()
         fnoLotsize = nse.get_fno_lot_sizes()
-        return render(request, 'lotSize.html',
+        return render(request, 'F&O/lotSize.html',
         {"fnoLotsize":fnoLotsize})
 @login_required(login_url='/login')
 def indexList(request):
         nse = Nse()
         index_codes = nse.get_index_list()
-        return render(request, 'indexList.html',
+        return render(request, 'Index/indexList.html',
         {'index_codes':index_codes}
         )
 @login_required(login_url='/login')
 def topLosers(request): 
         nse=Nse()
         top_losers = nse.get_top_losers()
-        return render(request, 'topLosers.html',
+        return render(request, 'Index/topLosers.html',
         { 'top_losers' : top_losers })
 @login_required(login_url='/login')
 def topGainer(request):
     nse = Nse()
     top_gainer = nse.get_top_gainers()
-    return render(request, 'topGainer.html',{'top_gainer':top_gainer})
+    return render(request, 'Index/topGainer.html',{'top_gainer':top_gainer})
     
     
 def indexInfo(request):
@@ -92,7 +92,7 @@ def indexInfo(request):
      if request.method == "GET" :
          index_quote = nse.get_index_quote(request.GET.get('stock_id'))
          print(index_quote,"index quote")
-     return render(request, 'indexInfo.html',
+     return render(request, 'Index/indexInfo.html',
      {'index_quote' : index_quote})
 
 def quote_info(request):
@@ -101,7 +101,7 @@ def quote_info(request):
     if request.method == "GET" :
          quote_info = nse.get_quote(request.GET.get('stock_id'))
         #  print(quote_info,"quote_info")
-    return render(request, 'quoteInfo.html',
+    return render(request, 'Index/quoteInfo.html',
      {'quote_info' : quote_info})
 
 def contact(request):
