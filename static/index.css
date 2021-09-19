@@ -11,11 +11,21 @@
     margin:10px 20px;
 }
 .card:hover{box-shadow: 5px 5px 10px -4px #000;}
-.carousel{
-    width:300px;
-  }
-.item img{
-    object-fit:cover;
-    height:150px;
-    width:350px;
-  }
+.carousel-inner >.item > img {
+     display: block;
+     max-width: auto;
+     height: 400px !important;
+ }
+ 
+*{
+  margin: 0px;
+  padding: 0px;
+}
+html, body{
+  font-family: "Lato", sans-serif;
+}
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+     

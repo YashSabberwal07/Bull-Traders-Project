@@ -150,11 +150,6 @@ def handleSignup(request):
         return HttpResponse('404_ Not Found')
    
 def handleLogin(request): 
-    #if request.redirect.status == 302 :
-        #messages.warning(request,"please login to contiue")
-    # query =  request.GET['query']
-    # if query == "restricted":
-    #     messages.warning(request,"please login to contiue")
     if request.method == "POST" :
         loginusername = request.POST['loginusername']
         loginpassword = request.POST['loginpassword']
@@ -164,11 +159,11 @@ def handleLogin(request):
     # A backend authenticated the credentials
              login(request,user)
              messages.success(request," Successfully Logged In !")
-             return redirect("home")
+             return redirect('home')
         else:
             # No backend authenticated the credentials
              messages.error(request,"Invalid credentials , please try again !")
-             return render(request, 'home')
+             return redirect('home')
     #return render(request,'index.html')
     return render(request,'login.html')
 def handleLogout(request):
