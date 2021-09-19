@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+{%block title%}
+Index Info
+{%endblock title%}
+{% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
+<div class = "center-block">
+<div class = "container"> 
+<h3> Stock Info </h3>
+    <div class="card" style="width: 18rem;">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+         {{quote_info.symbol}}
+        </div>
+        <ul class="list-group list-group-flush">
+        {% for key, value in quote_info.items %}
+          <li class="list-group-item"> {{key}} :  {{value}} </li>
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+   </div>
+   {% comment %} <div class="card" style="width: 18rem;">
+       {% for info in quote_info %}
+        <ul class="list-group list-group-flush">
+       <li class="list-group-item">{{ info }}</li>
+        </ul>
+        {% endfor %}
+   </div> {% endcomment %}
+   {% comment %} <div class="list-group" id = "quote_info" name = "quote_info">
+   {% for info in quote_info %}
+   <a class="list-group-item list-group-item-action list-group-item-primary my-2">
+    <li> {{ info }} </li>
+    </a>
+    {% endfor %}
+   </div> {% endcomment %}
+</div>
+{% endblock body %}

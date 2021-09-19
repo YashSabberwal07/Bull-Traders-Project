@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+{%block title%}
+Index Info
+{%endblock title%}
+{% block sevicesactive %} active {% endblock sevicesactive %}
+{% block body %}
+<div class="container">
+<h3> Preopen Futures and Options : </h3>
+<div class="list-group">
+  <table style="width:100%"  class="table table-striped table-bordered">
+     <thead class="thead-dark"></thead>
+    <tr>
+      <th>Stock Names </th>
+      <th>Open Price</th>
+      <th>High Price</th>
+      <th>Year High</th>
+      <th>Year Low</th>
+      <th>Finall Quantity</th>
+    </tr>
+   {% for stk in preopenFno %}
+    <tr>
+      <td class="my-4">
+        <a href="/quote_info/?stock_id={{ stk.symbol }}" id = "{{ stk.symbol }}" name ="{{ stk.symbol }}"> 
+          <ul> {{ stk.symbol }}</ul>
+        </a>
+      </td>
+      <td>
+        <ul> {{ stk.trdQnty }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.yHigh }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.yLow }} </ul>
+      </td>
+      <td>
+        <ul> {{ stk.finQnty }} </ul>
+      </td>  
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+    {% endblock body %}

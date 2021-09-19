@@ -6,10 +6,9 @@ from django.contrib import messages
 from blog.models import Post
 import requests
 import json
-from django.http import HttpResponseRedirect
 from django.http import JsonResponse
-from django.contrib.auth.decorators import permission_required
 from nsetools import Nse, nse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     #print("check")
@@ -20,99 +19,70 @@ def home(request):
     #print(index_codes)
     #print(top_gainer)
     #request.session = name
-    return render(request,'index.html')
+    return render(request,'home/index.html')
 
 def about(request):
     print(request)
     print(redirect)
     return render(request, 'home/about.html')
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenNifty(request):
-    if  request.user.is_anonymous:
-        return redirect("/login",status=302)
-    else:
         nse=Nse()
         preopenNifty = nse.get_preopen_nifty()
-        return render(request, 'preopenNifty.html',
+        return render(request, 'Premarket/preopenNifty.html',
          {"preopenNifty":preopenNifty}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenNiftybank(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         preopenNiftybank=nse.get_preopen_niftybank()
-        return render(request, 'preopenNiftybank.html',
+        return render(request, 'Premarket/preopenNiftybank.html',
         {"preopenNiftybank":preopenNiftybank}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def preopenFno(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         preopenFno=nse.get_preopen_fno()
-        return render(request, 'preopenfno.html',
+        return render(request, 'Premarket/preopenfno.html',
         {"preopenFno":preopenFno}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topFnoGainer(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         topFnoGainer = nse.get_top_fno_gainers()
-        return render(request, 'topFnoGainer.html',
+        return render(request, 'F&O/topFnoGainer.html',
         { "topFnoGainer": topFnoGainer}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topFnoLosers(request):
-    if  request.user.is_anonymous:
-        flag =1
-        return redirect("/login",{"flag":flag})
-    else:
         nse=Nse()
         topFnoLosers = nse.get_top_fno_losers()
-        return render(request, 'topFnoLosers.html',
+        return render(request, 'F&O/topFnoLosers.html',
         {"topFnoLosers":topFnoLosers})
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def fnoLotsize(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         fnoLotsize = nse.get_fno_lot_sizes()
-        print(fnoLotsize)
-        return render(request, 'lotSize.html',
+        return render(request, 'F&O/lotSize.html',
         {"fnoLotsize":fnoLotsize})
+@login_required(login_url='/login')
 def indexList(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse = Nse()
         index_codes = nse.get_index_list()
-        return render(request, 'indexList.html',
+        return render(request, 'Index/indexList.html',
         {'index_codes':index_codes}
         )
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topLosers(request): 
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
         nse=Nse()
         top_losers = nse.get_top_losers()
-        return render(request, 'topLosers.html',
+        return render(request, 'Index/topLosers.html',
         { 'top_losers' : top_losers })
-# @permission_required('entity.can_delete',login_url='/login')
+@login_required(login_url='/login')
 def topGainer(request):
-    if  request.user.is_anonymous:
-        return redirect("/login")
-    else:
-        nse = Nse()
-        top_gainer = nse.get_top_gainers()
-        return render(request, 'topGainer.html'
-        ,{'top_gainer':top_gainer})
+    nse = Nse()
+    top_gainer = nse.get_top_gainers()
+    return render(request, 'Index/topGainer.html',{'top_gainer':top_gainer})
     
     
 def indexInfo(request):
@@ -122,7 +92,7 @@ def indexInfo(request):
      if request.method == "GET" :
          index_quote = nse.get_index_quote(request.GET.get('stock_id'))
          print(index_quote,"index quote")
-     return render(request, 'indexInfo.html',
+     return render(request, 'Index/indexInfo.html',
      {'index_quote' : index_quote})
 
 def quote_info(request):
@@ -130,8 +100,8 @@ def quote_info(request):
 
     if request.method == "GET" :
          quote_info = nse.get_quote(request.GET.get('stock_id'))
-         print(quote_info,"quote_info")
-    return render(request, 'quoteInfo.html',
+        #  print(quote_info,"quote_info")
+    return render(request, 'Index/quoteInfo.html',
      {'quote_info' : quote_info})
 
 def contact(request):
@@ -180,11 +150,6 @@ def handleSignup(request):
         return HttpResponse('404_ Not Found')
    
 def handleLogin(request): 
-    #if request.redirect.status == 302 :
-        #messages.warning(request,"please login to contiue")
-    # query =  request.GET['query']
-    # if query == "restricted":
-    #     messages.warning(request,"please login to contiue")
     if request.method == "POST" :
         loginusername = request.POST['loginusername']
         loginpassword = request.POST['loginpassword']
@@ -194,11 +159,11 @@ def handleLogin(request):
     # A backend authenticated the credentials
              login(request,user)
              messages.success(request," Successfully Logged In !")
-             return redirect("home")
+             return redirect('home')
         else:
             # No backend authenticated the credentials
              messages.error(request,"Invalid credentials , please try again !")
-             return render(request, 'home')
+             return redirect('home')
     #return render(request,'index.html')
     return render(request,'login.html')
 def handleLogout(request):
@@ -215,12 +180,13 @@ def search(request):
         # allPostsTitle = Post.objects.filter(title__icontains=query)
         # allPostsContent = Post.objects.filter(content__icontains=query)
         # allPosts = allPostsTitle.union(allPostsContent)
-        SI = nse.get_quote(query)
+        search_index_info = nse.get_quote(query)
         #allStk = allPosts.union(SI)
     # if SI.count() == 0:
     #     messages.warning(request,"No search result found Please refine your query")
     #params = {'allStk': allStk,'query':query}
-    print(SI)
+    print("In else block")
+    print(search_index_info)
     return render(request, 'home/search.html',
-    {'SI':SI,'query':query}
+    {'search_index_info':search_index_info,'query':query}
     )
