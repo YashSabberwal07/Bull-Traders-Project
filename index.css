@@ -1,0 +1,33 @@
+.card{
+    flex:1 1 1 22rem;
+    display: flex;
+    height: calc(80vh/1.2);
+    box-shadow: 0 0 15px;
+    border-color: black;
+}
+.card .btn{
+    position:absolute;
+    bottom:0;
+    padding: 10px 20px;
+    margin: 40px 45px;
+}
+.card:hover{box-shadow: 5px 5px 10px -2px rgb(255, 166, 2);}
+.carousel-inner >.item > img {
+     display: block;
+     height: 300px !important;
+ }
+ 
+*{
+  margin: 0px;
+  padding: 4px;
+}
+html, body{
+    font-family: Hawaii 5-0, sans-serif;
+  background-color: black;
+  color: white;
+}
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+     
